@@ -64,7 +64,8 @@ const Footer = () => {
             <div className="flex gap-4">
               {[
                 { icon: Youtube, href: "#", label: "YouTube" },
-                { icon: Music, href: "#", label: "Spotify" },
+                { icon: Music, href: "https://open.spotify.com/artist/6FAynluV2cSNgytAi6TZhW", label: "Spotify (Bhuvanaai)" },
+                { icon: Music, href: "https://open.spotify.com/artist/5RjIU1skmvuGIRpDE6h8Vb", label: "Spotify (Apollo's AI)" },
                 { icon: Instagram, href: "#", label: "Instagram" },
                 { icon: Twitter, href: "#", label: "X (Twitter)" },
               ].map(({ icon: Icon, href, label }) => (
@@ -75,6 +76,7 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300"
                   aria-label={label}
+                  title={label}
                 >
                   <Icon size={18} />
                 </a>
