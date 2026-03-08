@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, User, LogIn } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useAuth } from "@/contexts/AuthContext";
+import { Button } from "@/components/ui/button";
 
 const navLinks = [
   { to: "/", label: "Home" },
@@ -16,6 +18,7 @@ const navLinks = [
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { user } = useAuth();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
@@ -46,6 +49,19 @@ const Navbar = () => {
               {link.label}
             </Link>
           ))}
+          {user ? (
+            <Button asChild size="sm" variant="outline" className="gap-2">
+              <Link to="/dashboard">
+                <User size={14} /> Dashboard
+              </Link>
+            </Button>
+          ) : (
+            <Button asChild size="sm" className="gap-2 glow-neon">
+              <Link to="/login">
+                <LogIn size={14} /> Sign In
+              </Link>
+            </Button>
+          )}
         </div>
 
         {/* Mobile Toggle */}
@@ -82,6 +98,23 @@ const Navbar = () => {
                   {link.label}
                 </Link>
               ))}
+              {user ? (
+                <Link
+                  to="/dashboard"
+                  onClick={() => setIsOpen(false)}
+                  className="text-sm tracking-wide py-2 text-primary font-medium"
+                >
+                  Dashboard
+                </Link>
+              ) : (
+                <Link
+                  to="/login"
+                  onClick={() => setIsOpen(false)}
+                  className="text-sm tracking-wide py-2 text-primary font-medium"
+                >
+                  Sign In
+                </Link>
+              )}
             </div>
           </motion.div>
         )}
