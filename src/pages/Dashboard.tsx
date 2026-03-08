@@ -113,8 +113,9 @@ const Dashboard = () => {
                   </Link>
                 </Button>
                 <Button variant="outline" onClick={handleSignOut} className="gap-2">
-                <LogOut size={16} /> Sign Out
-              </Button>
+                  <LogOut size={16} /> Sign Out
+                </Button>
+              </div>
             </div>
 
             {/* Tabs */}
