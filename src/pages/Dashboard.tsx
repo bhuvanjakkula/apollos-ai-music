@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { User, Music, Heart, Download, Settings, LogOut } from "lucide-react";
+import { User, Music, Heart, Download, Settings, LogOut, Mail } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -105,9 +106,16 @@ const Dashboard = () => {
                 </h1>
                 <p className="text-muted-foreground mt-1">Manage your music, downloads, and profile</p>
               </div>
-              <Button variant="outline" onClick={handleSignOut} className="gap-2">
-                <LogOut size={16} /> Sign Out
-              </Button>
+              <div className="flex gap-3">
+                <Button asChild variant="outline" className="gap-2">
+                  <Link to="/admin/contacts">
+                    <Mail size={16} /> Contact Inbox
+                  </Link>
+                </Button>
+                <Button variant="outline" onClick={handleSignOut} className="gap-2">
+                  <LogOut size={16} /> Sign Out
+                </Button>
+              </div>
             </div>
 
             {/* Tabs */}
