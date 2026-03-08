@@ -16,6 +16,7 @@ import Signup from "./pages/Signup";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import Dashboard from "./pages/Dashboard";
+import AdminContacts from "./pages/AdminContacts";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
