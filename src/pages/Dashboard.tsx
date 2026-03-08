@@ -106,7 +106,13 @@ const Dashboard = () => {
                 </h1>
                 <p className="text-muted-foreground mt-1">Manage your music, downloads, and profile</p>
               </div>
-              <Button variant="outline" onClick={handleSignOut} className="gap-2">
+              <div className="flex gap-3">
+                <Button asChild variant="outline" className="gap-2">
+                  <Link to="/admin/contacts">
+                    <Mail size={16} /> Contact Inbox
+                  </Link>
+                </Button>
+                <Button variant="outline" onClick={handleSignOut} className="gap-2">
                 <LogOut size={16} /> Sign Out
               </Button>
             </div>
