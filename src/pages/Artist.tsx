@@ -1,8 +1,31 @@
 import { motion } from "framer-motion";
+import { ExternalLink, Music } from "lucide-react";
 import Layout from "@/components/layout/Layout";
+import { Button } from "@/components/ui/button";
 import artistImg from "@/assets/artist-bhuvanaai.png";
-import album3 from "@/assets/album-3.jpg";
-import album4 from "@/assets/album-4.jpg";
+
+const SPOTIFY_ARTIST_URL = "https://open.spotify.com/artist/6FAynluV2cSNgytAi6TZhW";
+
+const popularTracks = [
+  { title: "Forever in Your Love", url: "https://open.spotify.com/track/6W4HPydyZmd5Hzmo4XNcGy", duration: "3:46" },
+  { title: "Oh My Divine", url: "https://open.spotify.com/track/4mSyvWzuVSgEbM9eAuYVrK", duration: "3:59" },
+  { title: "Oceans Deep", url: "https://open.spotify.com/track/0aPJO33b73TsEO9QU42cc2", duration: "3:59" },
+  { title: "A Thousand Echoes", url: "https://open.spotify.com/track/5RqaYjVkeaLs4KSSTBskMf", duration: "3:59" },
+  { title: "We Move as One", url: "https://open.spotify.com/track/6QtS6xIrqAV5xWOnDHbdOH", duration: "3:59" },
+];
+
+const discography = [
+  { title: "Light of Love", type: "Latest Release • Single", url: "https://open.spotify.com/album/5ne2TCU7o1RCpxxxidTciH" },
+  { title: "A Thousand Echoes", type: "2025 • Single", url: "https://open.spotify.com/album/4hevE1Mgb12G0qQBxY5l8h" },
+  { title: "Bondage No More", type: "2025 • Single", url: "https://open.spotify.com/album/0BsWLXcCDsA4qRG6FdcxK8" },
+  { title: "Chasing Sunlight", type: "2025 • Single", url: "https://open.spotify.com/album/1e9gZUvLE7SxG7PXtkS0nU" },
+  { title: "Come Back to Me", type: "2025 • Single", url: "https://open.spotify.com/album/50hdOs9crKsrQLAFyfZLNC" },
+  { title: "Echo of My Heart", type: "2025 • Single", url: "https://open.spotify.com/album/4zh2dgenZZbS9qk2dnCKzH" },
+  { title: "Eternal Love", type: "2025 • Single", url: "https://open.spotify.com/album/265SpQSRgxyVOIvlEu4kWP" },
+  { title: "Face the Music of Pain", type: "2025 • Single", url: "https://open.spotify.com/album/3nR6iQA6g9pLbiSVPF8qdr" },
+  { title: "Forever in Your Love", type: "2025 • Single", url: "https://open.spotify.com/album/0j1FH56GHGbbR89iN3uuwV" },
+  { title: "I Was Waiting for You", type: "2025 • Single", url: "https://open.spotify.com/album/1onE19u4zQ9kmKbYI0yqDm" },
+];
 
 const Artist = () => {
   return (
@@ -26,11 +49,18 @@ const Artist = () => {
                 cinematic pop, orchestral fusion, and emotionally-driven compositions that 
                 tell stories through sound.
               </p>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed mb-8">
                 The creative vision is to push the limits of what music can be when human 
                 artistry is amplified by technology — creating soundscapes for the future 
                 of cinema and storytelling.
               </p>
+              <div className="flex gap-4">
+                <Button asChild className="glow-neon gap-2">
+                  <a href={SPOTIFY_ARTIST_URL} target="_blank" rel="noopener noreferrer">
+                    <Music size={16} /> Listen on Spotify
+                  </a>
+                </Button>
+              </div>
             </motion.div>
 
             <motion.div
@@ -49,33 +79,84 @@ const Artist = () => {
             </motion.div>
           </div>
 
-          {/* Releases */}
+          {/* Spotify Embed */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="mt-24"
           >
-            <h2 className="text-3xl font-display font-bold mb-8">Selected Releases</h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {[
-                { title: "Neural Symphony", image: album3 },
-                { title: "Aurora Dreams", image: album4 },
-                { title: "Celestial Echoes", image: album3 },
-                { title: "Digital Soul", image: album4 },
-              ].map((release) => (
-                <div key={release.title} className="group cursor-pointer">
-                  <div className="aspect-square rounded-lg overflow-hidden mb-3">
-                    <img
-                      src={release.image}
-                      alt={release.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      loading="lazy"
-                    />
+            <h2 className="text-3xl font-display font-bold mb-8">Listen Now</h2>
+            <div className="card-cinematic p-4 max-w-2xl">
+              <iframe
+                src="https://open.spotify.com/embed/artist/6FAynluV2cSNgytAi6TZhW?utm_source=generator&theme=0"
+                width="100%"
+                height="352"
+                frameBorder="0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"
+                className="rounded-lg"
+              />
+            </div>
+          </motion.div>
+
+          {/* Popular Tracks */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-24"
+          >
+            <h2 className="text-3xl font-display font-bold mb-8">Popular Tracks</h2>
+            <div className="space-y-2 max-w-2xl">
+              {popularTracks.map((track, i) => (
+                <a
+                  key={track.title}
+                  href={track.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between p-4 rounded-lg bg-secondary/50 border border-border hover:border-primary/50 transition-all group"
+                >
+                  <div className="flex items-center gap-4">
+                    <span className="text-sm text-muted-foreground w-6 text-right">{i + 1}</span>
+                    <span className="font-display font-medium text-foreground group-hover:text-primary transition-colors">
+                      {track.title}
+                    </span>
                   </div>
-                  <h3 className="font-display font-semibold text-sm text-foreground">{release.title}</h3>
-                  <p className="text-xs text-muted-foreground">Bhuvanaai Music</p>
-                </div>
+                  <div className="flex items-center gap-4">
+                    <span className="text-sm text-muted-foreground">{track.duration}</span>
+                    <ExternalLink size={14} className="text-muted-foreground group-hover:text-primary transition-colors" />
+                  </div>
+                </a>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Discography */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-24"
+          >
+            <h2 className="text-3xl font-display font-bold mb-8">Discography</h2>
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+              {discography.map((release) => (
+                <a
+                  key={release.title}
+                  href={release.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="card-cinematic p-4 hover:border-primary/50 transition-all group"
+                >
+                  <div className="aspect-square rounded-md bg-secondary/50 flex items-center justify-center mb-3">
+                    <Music size={32} className="text-muted-foreground group-hover:text-primary transition-colors" />
+                  </div>
+                  <h3 className="font-display font-semibold text-sm text-foreground group-hover:text-primary transition-colors truncate">
+                    {release.title}
+                  </h3>
+                  <p className="text-[11px] text-muted-foreground mt-1">{release.type}</p>
+                </a>
               ))}
             </div>
           </motion.div>

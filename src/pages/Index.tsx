@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Play, Music, Film, Sparkles, ArrowRight, Mail } from "lucide-react";
+import { Play, Music, Film, Sparkles, ArrowRight, Mail, ExternalLink } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import heroBg from "@/assets/hero-bg.jpg";
@@ -19,10 +19,10 @@ const fadeUp = {
 };
 
 const featuredReleases = [
-  { title: "Digital Horizons", label: "Apollo's AI Music", image: album1 },
-  { title: "Orchestral Cosmos", label: "Apollo's AI Music", image: album2 },
-  { title: "Neural Symphony", label: "Bhuvanaai Music", image: album3 },
-  { title: "Aurora Dreams", label: "Bhuvanaai Music", image: album4 },
+  { title: "Kiss Me Tonight", label: "Apollo's AI Music", image: album1, spotifyUrl: "https://open.spotify.com/track/5wbQJIgoYp6WRM1xVqJzsh" },
+  { title: "Forever in Your Love", label: "Bhuvanaai Music", image: album3, spotifyUrl: "https://open.spotify.com/track/6W4HPydyZmd5Hzmo4XNcGy" },
+  { title: "Oh My Divine", label: "Bhuvanaai Music", image: album4, spotifyUrl: "https://open.spotify.com/track/4mSyvWzuVSgEbM9eAuYVrK" },
+  { title: "A Thousand Echoes", label: "Bhuvanaai Music", image: album2, spotifyUrl: "https://open.spotify.com/track/5RqaYjVkeaLs4KSSTBskMf" },
 ];
 
 const Index = () => {
@@ -104,8 +104,11 @@ const Index = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {featuredReleases.map((release, i) => (
-              <motion.div
+              <motion.a
                 key={release.title}
+                href={release.spotifyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -125,7 +128,7 @@ const Index = () => {
                 </div>
                 <h3 className="font-display font-semibold text-foreground">{release.title}</h3>
                 <p className="text-sm text-muted-foreground">{release.label}</p>
-              </motion.div>
+              </motion.a>
             ))}
           </div>
 
@@ -136,6 +139,32 @@ const Index = () => {
               </Link>
             </Button>
           </div>
+        </div>
+      </section>
+
+      {/* Spotify Featured Player */}
+      <section className="py-16 border-t border-border">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-2xl mx-auto"
+          >
+            <p className="text-sm tracking-[0.3em] uppercase text-primary mb-3 text-center">Now Playing</p>
+            <h2 className="text-2xl md:text-4xl font-display font-bold mb-8 text-center">Kiss Me Tonight</h2>
+            <div className="card-cinematic p-4">
+              <iframe
+                src="https://open.spotify.com/embed/track/5wbQJIgoYp6WRM1xVqJzsh?utm_source=generator&theme=0"
+                width="100%"
+                height="152"
+                frameBorder="0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"
+                className="rounded-lg"
+              />
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -218,7 +247,27 @@ const Index = () => {
               Stream Our Music
             </h2>
             <div className="flex flex-wrap justify-center gap-6">
-              {["Spotify", "Apple Music", "YouTube"].map((platform) => (
+              <a
+                href="https://open.spotify.com/artist/5RjIU1skmvuGIRpDE6h8Vb"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card-cinematic px-8 py-4 text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300 flex items-center gap-2"
+              >
+                <Music size={18} />
+                <span className="font-display font-medium">Spotify — Apollo's AI</span>
+                <ExternalLink size={14} />
+              </a>
+              <a
+                href="https://open.spotify.com/artist/6FAynluV2cSNgytAi6TZhW"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card-cinematic px-8 py-4 text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300 flex items-center gap-2"
+              >
+                <Music size={18} />
+                <span className="font-display font-medium">Spotify — Bhuvanaai</span>
+                <ExternalLink size={14} />
+              </a>
+              {["Apple Music", "YouTube"].map((platform) => (
                 <a
                   key={platform}
                   href="#"
