@@ -28,12 +28,6 @@ const featuredReleases = [
 const Index = () => {
   return (
     <Layout>
-      {/* SEO */}
-      <title>Apollo's AI Music & Film Production | Dr. Bhuvan Jakkula</title>
-      <meta
-        name="description"
-        content="Cinematic music for films, stories, and the future of sound. AI-human creative collaboration by Dr. Bhuvan Jakkula."
-      />
 
       {/* Hero */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
