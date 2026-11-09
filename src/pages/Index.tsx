@@ -86,11 +86,15 @@ const Index = () => {
       {/* Hero */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 bg-cover bg-center scale-105"
           style={{ backgroundImage: `url(${heroBg})` }}
         />
-        <div className="absolute inset-0 hero-gradient opacity-80" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+        <div className="absolute inset-0 hero-gradient opacity-85" />
+        {/* Vibrant Golden, Magenta & Cyan Ambient Orbs */}
+        <div className="absolute top-1/4 left-1/6 w-96 h-96 rounded-full bg-amber-500/25 blur-[130px] animate-pulse-glow pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/6 w-96 h-96 rounded-full bg-pink-500/25 blur-[130px] animate-pulse-glow pointer-events-none" />
+        <div className="absolute top-1/3 right-1/3 w-80 h-80 rounded-full bg-cyan-400/20 blur-[120px] animate-pulse-glow pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
 
         <div className="relative z-10 container mx-auto px-6 text-center">
           <motion.div
@@ -101,24 +105,24 @@ const Index = () => {
             <motion.div
               custom={0}
               variants={fadeUp}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/30 text-xs tracking-[0.25em] uppercase text-primary mb-6"
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-full gold-pill text-xs tracking-[0.25em] uppercase text-amber-300 font-semibold mb-6"
             >
-              <Globe size={14} />
+              <Globe size={14} className="text-amber-400" />
               <span>{t("hero.badge", "Human Creativity × Artificial Intelligence")}</span>
             </motion.div>
             <motion.h1
               custom={1}
               variants={fadeUp}
-              className="text-5xl md:text-7xl lg:text-8xl font-display font-bold leading-[0.95] mb-6"
+              className="text-5xl md:text-7xl lg:text-8xl font-display font-extrabold leading-[0.95] mb-6 drop-shadow-[0_8px_30px_rgba(245,158,11,0.3)]"
             >
-              {t("hero.title1", "Apollo's AI")}
+              <span className="text-gradient-gold">{t("hero.title1", "Apollo's AI")}</span>
               <br />
               <span className="text-gradient-neon">{t("hero.title2", "Music")}</span>
             </motion.h1>
             <motion.p
               custom={2}
               variants={fadeUp}
-              className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10"
+              className="text-lg md:text-xl text-amber-100/85 max-w-2xl mx-auto mb-10 font-light"
             >
               {t("hero.subtitle", "Cinematic Music for Films, Stories, and the Future of Sound.")}
             </motion.p>
@@ -133,9 +137,15 @@ const Index = () => {
                   {t("hero.cta.explore", "Explore 190+ Tracks")}
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="lg">
+              <Button asChild size="lg" variant="outline" className="border-amber-400/50 bg-amber-500/10 text-amber-200 hover:bg-amber-500/20 hover:text-amber-100">
+                <Link to="/innovations">
+                  <Cpu size={18} className="mr-2 text-amber-400" />
+                  19+ AI Software &amp; Books
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="border-pink-400/40 bg-pink-500/10 text-pink-200 hover:bg-pink-500/20">
                 <Link to="/film-licensing">
-                  <Film size={18} className="mr-2" />
+                  <Film size={18} className="mr-2 text-pink-400" />
                   {t("hero.cta.license", "License for Film & Media")}
                 </Link>
               </Button>
@@ -273,22 +283,22 @@ const Index = () => {
                   "Apollo's AI Music is a next-generation music production studio founded by Dr. Bhuvan Jakkula. We explore the creative frontier between artificial intelligence and human imagination, producing cinematic pop music, orchestral soundscapes, and film-ready compositions."
                 )}
               </p>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-8">
-                <div>
-                  <p className="text-3xl font-display font-bold text-primary">190+</p>
-                  <p className="text-xs text-muted-foreground">{t("stats.songs", "Original Songs")}</p>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+                <div className="p-4 rounded-xl bg-gradient-to-br from-amber-500/15 to-transparent border border-amber-400/30">
+                  <p className="text-3xl font-display font-extrabold text-gradient-gold">190+</p>
+                  <p className="text-xs text-amber-200/80">{t("stats.songs", "Original Songs")}</p>
                 </div>
-                <div>
-                  <p className="text-3xl font-display font-bold text-primary">2</p>
-                  <p className="text-xs text-muted-foreground">{t("stats.labels", "Music Labels")}</p>
+                <div className="p-4 rounded-xl bg-gradient-to-br from-pink-500/15 to-transparent border border-pink-400/30">
+                  <p className="text-3xl font-display font-extrabold text-pink-400">19+</p>
+                  <p className="text-xs text-pink-200/80">AI Software Platforms</p>
                 </div>
-                <div>
-                  <p className="text-3xl font-display font-bold text-primary">180+</p>
-                  <p className="text-xs text-muted-foreground">{t("stats.countries", "Countries Reached")}</p>
+                <div className="p-4 rounded-xl bg-gradient-to-br from-cyan-500/15 to-transparent border border-cyan-400/30">
+                  <p className="text-3xl font-display font-extrabold text-cyan-400">180+</p>
+                  <p className="text-xs text-cyan-200/80">{t("stats.countries", "Countries Reached")}</p>
                 </div>
-                <div>
-                  <p className="text-3xl font-display font-bold text-primary">∞</p>
-                  <p className="text-xs text-muted-foreground">{t("stats.vision", "Creative Vision")}</p>
+                <div className="p-4 rounded-xl bg-gradient-to-br from-purple-500/15 to-transparent border border-purple-400/30">
+                  <p className="text-3xl font-display font-extrabold text-purple-400">10+</p>
+                  <p className="text-xs text-purple-200/80">Published Books</p>
                 </div>
               </div>
               <Button asChild>

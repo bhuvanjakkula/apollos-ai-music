@@ -127,27 +127,27 @@ const Innovations = () => {
 
           {/* Stats Bar */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-14">
-            <div className="card-cinematic p-6">
-              <p className="text-3xl font-display font-bold text-primary">19+</p>
-              <p className="text-xs text-muted-foreground mt-1">
+            <div className="card-cinematic p-6 border-amber-400/40 bg-gradient-to-br from-amber-500/15 via-transparent to-transparent">
+              <p className="text-4xl font-display font-extrabold text-gradient-gold">19+</p>
+              <p className="text-xs text-amber-200/80 mt-1 font-medium">
                 Enterprise AI &amp; SaaS Platforms
               </p>
             </div>
-            <div className="card-cinematic p-6">
-              <p className="text-3xl font-display font-bold text-primary">11</p>
-              <p className="text-xs text-muted-foreground mt-1">
+            <div className="card-cinematic p-6 border-pink-400/40 bg-gradient-to-br from-pink-500/15 via-transparent to-transparent">
+              <p className="text-4xl font-display font-extrabold text-pink-400">11</p>
+              <p className="text-xs text-pink-200/80 mt-1 font-medium">
                 Live Global Cloud Deployments
               </p>
             </div>
-            <div className="card-cinematic p-6">
-              <p className="text-3xl font-display font-bold text-primary">10+</p>
-              <p className="text-xs text-muted-foreground mt-1">
+            <div className="card-cinematic p-6 border-cyan-400/40 bg-gradient-to-br from-cyan-500/15 via-transparent to-transparent">
+              <p className="text-4xl font-display font-extrabold text-cyan-400">10+</p>
+              <p className="text-xs text-cyan-200/80 mt-1 font-medium">
                 Published Books on Amazon
               </p>
             </div>
-            <div className="card-cinematic p-6">
-              <p className="text-3xl font-display font-bold text-primary">190+</p>
-              <p className="text-xs text-muted-foreground mt-1">
+            <div className="card-cinematic p-6 border-purple-400/40 bg-gradient-to-br from-purple-500/15 via-transparent to-transparent">
+              <p className="text-4xl font-display font-extrabold text-purple-400">190+</p>
+              <p className="text-xs text-purple-200/80 mt-1 font-medium">
                 Original AI-Human Songs
               </p>
             </div>

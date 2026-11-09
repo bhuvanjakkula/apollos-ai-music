@@ -49,15 +49,19 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-primary/30 bg-background/85 backdrop-blur-2xl shadow-[0_4px_30px_rgba(245,158,11,0.12)]">
+      <div className="h-[2px] w-full bg-gradient-to-r from-amber-400 via-pink-500 to-cyan-400" />
       <div className="container mx-auto flex items-center justify-between px-6 py-4">
-        <Link to="/" className="flex items-center gap-3">
+        <Link to="/" className="flex items-center gap-3 group">
+          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-amber-300 via-amber-500 to-pink-500 flex items-center justify-center text-background font-display font-extrabold text-lg shadow-[0_0_20px_rgba(245,158,11,0.5)] group-hover:scale-105 transition-transform">
+            A
+          </div>
           <div className="flex flex-col">
-            <span className="text-lg font-display font-bold tracking-wider text-foreground">
+            <span className="text-lg font-display font-bold tracking-wider text-gradient-gold">
               APOLLO'S AI
             </span>
-            <span className="text-[10px] tracking-[0.3em] text-muted-foreground uppercase">
-              Music & Film Production
+            <span className="text-[10px] tracking-[0.28em] text-amber-300/80 uppercase font-medium">
+              Music • AI Software • Books
             </span>
           </div>
         </Link>
