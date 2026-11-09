@@ -13,9 +13,12 @@ import {
   Stethoscope,
   Globe,
   Code2,
+  Copy,
+  Check,
 } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 import {
   SOFTWARE_PROJECTS,
   PUBLISHED_BOOKS,
@@ -65,6 +68,26 @@ const Innovations = () => {
   const [softwareCategory, setSoftwareCategory] = useState<string>("All Platforms");
   const [bookGenre, setBookGenre] = useState<string>("All Books");
   const [searchQuery, setSearchQuery] = useState("");
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyAllProjects = async () => {
+    const softwareText = SOFTWARE_PROJECTS.map(
+      (p, idx) =>
+        `${idx + 1}. ${p.name} (${p.category})\n   • URL: ${p.liveUrl || p.repoUrl}\n   • Description: ${p.description}`
+    ).join("\n\n");
+
+    const booksText = PUBLISHED_BOOKS.map(
+      (b, idx) =>
+        `${idx + 1}. ${b.title} — ${b.subtitle} (${b.genre})\n   • Amazon: ${b.amazonUrl}\n   • Description: ${b.description}`
+    ).join("\n\n");
+
+    const fullDirectory = `DR. BHUVAN JAKKULA — COMPLETE GLOBAL AI SOFTWARE (${SOFTWARE_PROJECTS.length} PLATFORMS) & PUBLISHED BOOKS (${PUBLISHED_BOOKS.length} TITLES)\nMain Portal: https://apollos-ai-music.vercel.app\n\n=== ENTERPRISE AI SOFTWARE PLATFORMS ===\n\n${softwareText}\n\n=== PUBLISHED BOOKS ===\n\n${booksText}`;
+
+    await navigator.clipboard.writeText(fullDirectory);
+    setCopied(true);
+    toast.success("Copied all 31 Software Projects & 10 Books with URLs and descriptions!");
+    setTimeout(() => setCopied(false), 3000);
+  };
 
   useEffect(() => {
     if (location.pathname === "/books" || location.search.includes("tab=books")) {
@@ -136,21 +159,29 @@ const Innovations = () => {
                   <ExternalLink size={17} /> Literary &amp; Research Blog
                 </a>
               </Button>
+              <Button
+                variant="outline"
+                onClick={handleCopyAllProjects}
+                className="gap-2 border-amber-400/50 text-amber-200 hover:bg-amber-500/20"
+              >
+                {copied ? <Check size={17} className="text-emerald-400" /> : <Copy size={17} className="text-amber-400" />}
+                {copied ? "Copied Complete Directory!" : "Copy All 31+ Projects & URLs"}
+              </Button>
             </div>
           </motion.div>
 
           {/* Stats Bar */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-14">
             <div className="card-cinematic p-6 border-amber-400/40 bg-gradient-to-br from-amber-500/15 via-transparent to-transparent">
-              <p className="text-4xl font-display font-extrabold text-gradient-gold">19+</p>
+              <p className="text-4xl font-display font-extrabold text-gradient-gold">31+</p>
               <p className="text-xs text-amber-200/80 mt-1 font-medium">
                 Enterprise AI &amp; SaaS Platforms
               </p>
             </div>
             <div className="card-cinematic p-6 border-pink-400/40 bg-gradient-to-br from-pink-500/15 via-transparent to-transparent">
-              <p className="text-4xl font-display font-extrabold text-pink-400">11</p>
+              <p className="text-4xl font-display font-extrabold text-pink-400">31</p>
               <p className="text-xs text-pink-200/80 mt-1 font-medium">
-                Live Global Cloud Deployments
+                Live Global Vercel Deployments
               </p>
             </div>
             <div className="card-cinematic p-6 border-cyan-400/40 bg-gradient-to-br from-cyan-500/15 via-transparent to-transparent">

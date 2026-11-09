@@ -2,7 +2,12 @@ export interface SoftwareProject {
   id: string;
   name: string;
   tagline: string;
-  category: "Enterprise AI & Revenue" | "FinTech & Risk Intelligence" | "Cybersecurity & Post-Quantum" | "Healthcare & Clinical AI" | "Global Media & Developer Tools";
+  category:
+    | "Enterprise AI & Revenue"
+    | "FinTech & Risk Intelligence"
+    | "Cybersecurity & Post-Quantum"
+    | "Healthcare & Clinical AI"
+    | "Global Media & Developer Tools";
   description: string;
   liveUrl?: string;
   repoUrl: string;
@@ -14,7 +19,11 @@ export interface PublishedBook {
   id: string;
   title: string;
   subtitle: string;
-  genre: "AI, Defense & Intelligence" | "Finance & Risk" | "Music & Romance Fiction" | "Thriller & Literary Fiction";
+  genre:
+    | "AI, Defense & Intelligence"
+    | "Finance & Risk"
+    | "Music & Romance Fiction"
+    | "Thriller & Literary Fiction";
   description: string;
   amazonUrl: string;
   highlight?: string;
@@ -29,6 +38,7 @@ export const AUTHOR_LINKS = {
 };
 
 export const SOFTWARE_PROJECTS: SoftwareProject[] = [
+  // 1. Enterprise AI, Revenue & LegalTech
   {
     id: "revnexus",
     name: "RevNexus AI",
@@ -48,44 +58,140 @@ export const SOFTWARE_PROJECTS: SoftwareProject[] = [
     category: "Enterprise AI & Revenue",
     description:
       "Diagnoses accounts receivable disputes automatically with spatial document citations, forensic invoice-to-contract reconciliation, and Post-Quantum Cryptography (PQC) protection.",
+    liveUrl: "https://contract-to-cash-rescue.vercel.app",
     repoUrl: "https://github.com/bhuvanjakkula/contract-to-cash-rescue",
-    techStack: ["Spatial Citations", "Post-Quantum Crypto", "AR Automation", "Python/FastAPI"],
+    techStack: ["Spatial Citations", "Post-Quantum Crypto", "AR Automation", "FastAPI"],
     badge: "PQC Secured",
   },
   {
-    id: "cura-health-os",
-    name: "CuraHealth OS",
-    tagline: "Enterprise Healthcare Practice, Prior Auth & Clinical Intelligence",
-    category: "Healthcare & Clinical AI",
+    id: "payment-rescue-pro",
+    name: "Payment Rescue Pro",
+    tagline: "Enterprise Payment Recovery & Dispute Resolution Suite",
+    category: "Enterprise AI & Revenue",
     description:
-      "End-to-end clinical intelligence operating system streamlining prior authorizations, patient workflows, and healthcare practice management.",
-    liveUrl: "https://cura-health-os.vercel.app",
-    repoUrl: "https://github.com/bhuvanjakkula/cura-health-os",
-    techStack: ["TypeScript", "Clinical AI", "Prior Auth", "Healthcare OS"],
-    badge: "Live Platform",
+      "Automated B2B payment recovery, failed transaction rescue workflows, and real-time revenue leakage prevention platform.",
+    liveUrl: "https://payment-rescue-pro.vercel.app",
+    repoUrl: "https://github.com/bhuvanjakkula/contract-to-cash-rescue",
+    techStack: ["Payment Recovery", "B2B FinTech", "Dispute AI"],
   },
   {
-    id: "medrecover-ai",
-    name: "MedRecover AI",
-    tagline: "Intelligent Clinical Revenue Cycle & Insurance Denial Recovery",
-    category: "Healthcare & Clinical AI",
+    id: "lex-nexus-enterprise",
+    name: "Lex Nexus Enterprise (VCS-CORE v1.0)",
+    tagline: "Verifiable Consequence Simulation & Legal Negotiation Lab",
+    category: "Enterprise AI & Revenue",
     description:
-      "Automated healthcare revenue cycle management and AI-driven insurance claim denial analysis and recovery engine.",
-    liveUrl: "https://ai-insurance-denial-recovery.vercel.app",
-    repoUrl: "https://github.com/bhuvanjakkula/ai-insurance-denial-recovery",
-    techStack: ["Python", "Healthcare RCM", "Claim Recovery", "AI Appeals"],
+      "Corporate legal negotiation and crisis simulation engine featuring RFC 8785 Canonical JSON, SHA3-512 state fingerprinting, NIST FIPS 204/203 Post-Quantum attestation, epistemic firewall, and counterfactual decision replay.",
+    liveUrl: "https://lex-nexus-enterprise.vercel.app",
+    repoUrl: "https://github.com/bhuvanjakkula",
+    techStack: ["LegalTech AI", "ML-DSA-87", "Counterfactual Replay", "Epistemic Firewall"],
+    badge: "LegalTech PQC",
   },
   {
-    id: "claimos",
-    name: "ClaimOS",
-    tagline: "Next-Gen Claims Processing & Adjudication Platform",
-    category: "Healthcare & Clinical AI",
+    id: "proofline-engine",
+    name: "Proofline Audit Engine",
+    tagline: "Cryptographic Enterprise Audit & Compliance Verification",
+    category: "Enterprise AI & Revenue",
     description:
-      "High-velocity claims intelligence and automated adjudication workspace for modern insurers and enterprise healthcare providers.",
-    liveUrl: "https://claimos-eight.vercel.app",
-    repoUrl: "https://github.com/bhuvanjakkula/claimos",
-    techStack: ["Claims AI", "Adjudication", "Workflow Automation"],
+      "Continuous cryptographic audit trail generation, immutable compliance evidence verification, and enterprise governance telemetry.",
+    liveUrl: "https://proofline-engine.vercel.app",
+    repoUrl: "https://github.com/bhuvanjakkula",
+    techStack: ["Audit Lineage", "Cryptographic Proofs", "Compliance AI"],
   },
+  {
+    id: "rbi-evidence-engine",
+    name: "RBI Evidence Engine",
+    tagline: "Automated Regulatory Compliance & Banking Audit Vault",
+    category: "Enterprise AI & Revenue",
+    description:
+      "Automated regulatory evidence collection, core-banking compliance verification, and audit readiness engine for financial institutions.",
+    liveUrl: "https://rbi-evidence-engine-bhuvan-bjt.vercel.app",
+    repoUrl: "https://github.com/bhuvanjakkula",
+    techStack: ["RegTech", "Banking Compliance", "Evidence Vault"],
+  },
+  {
+    id: "ggisp",
+    name: "GGISP — Global Governance Innovation Platform",
+    tagline: "Global Governance & Institutional Solutions Architecture",
+    category: "Enterprise AI & Revenue",
+    description:
+      "Research-backed platform for international corporate law, institutional governance, and cross-border policy innovation.",
+    liveUrl: "https://ggisp-platform-v2-bhuvan-bjt.vercel.app",
+    repoUrl: "https://github.com/bhuvanjakkula/GGISP-Global-Governance-Innovation-Solutions-Platform",
+    techStack: ["Python", "Global Governance", "LegalTech"],
+  },
+
+  // 2. Global Media, Music AI, Art & Developer Tools
+  {
+    id: "apollos-ai-music",
+    name: "Apollo's AI Music & Film Studio",
+    tagline: "Global Cinematic AI-Human Music & Sync Licensing Platform",
+    category: "Global Media & Developer Tools",
+    description:
+      "Global music production studio featuring 190+ original songs across Apollo's AI Music & Bhuvanaai Music, 8-language localization, persistent mini-player, and worldwide film sync licensing.",
+    liveUrl: "https://apollos-ai-music.vercel.app",
+    repoUrl: "https://github.com/bhuvanjakkula/apollos-ai-music",
+    techStack: ["React", "TypeScript", "Supabase", "Global i18n"],
+    badge: "190+ Songs",
+  },
+  {
+    id: "swarkhoj-ai",
+    name: "SwarKhoj AI (स्वरखोज एआई)",
+    tagline: "The Complete Hindi Music Universe (1931–2026+) & AI Song Detective",
+    category: "Global Media & Developer Tools",
+    description:
+      "Conversational AI Song Detective with Indic Phonetics Soundex, hybrid BM25 + neural vector search, Web Audio classical synthesis, 3-Tier Post-Quantum Rights Resolution, and Hindi Cinema Knowledge Graph.",
+    liveUrl: "https://swarkhoj-ai.vercel.app",
+    repoUrl: "https://github.com/bhuvanjakkula",
+    techStack: ["Indic NLP", "Web Audio API", "ML-KEM-768", "Knowledge Graph"],
+    badge: "Cultural AI",
+  },
+  {
+    id: "swarsaaz",
+    name: "SwarSaaz",
+    tagline: "Interactive Indian Classical & Film Music Studio",
+    category: "Global Media & Developer Tools",
+    description:
+      "Digital Indian classical raga exploration, microtonal instrument synthesis, and musical heritage streaming companion.",
+    liveUrl: "https://swarsaaz.vercel.app",
+    repoUrl: "https://github.com/bhuvanjakkula",
+    techStack: ["Raga Synthesis", "Audio DSP", "Music Heritage"],
+  },
+  {
+    id: "heritagearts-marketplace",
+    name: "HeritageArts Global Marketplace",
+    tagline: "World Traditional Art Platform Across 100+ Countries",
+    category: "Global Media & Developer Tools",
+    description:
+      "Global cultural marketplace cataloging and connecting authentic traditional art forms from 100+ countries with verified provenance and artisan storytelling.",
+    liveUrl: "https://heritagearts-global-marketplace.vercel.app",
+    repoUrl: "https://github.com/bhuvanjakkula",
+    techStack: ["100+ Countries", "Cultural Provenance", "Global E-Commerce"],
+    badge: "100+ Countries",
+  },
+  {
+    id: "devflow12",
+    name: "DevFlow 12",
+    tagline: "Local-First High-Engineering Software Intelligence Platform",
+    category: "Global Media & Developer Tools",
+    description:
+      "Solves the 12 classic software engineering pain points plus 3 breakthrough innovations in code architecture, velocity, and reliability.",
+    liveUrl: "https://dev-flow-gold-delta.vercel.app",
+    repoUrl: "https://github.com/bhuvanjakkula/Devflow12",
+    techStack: ["Python", "Developer Intelligence", "Local-First"],
+  },
+  {
+    id: "globaldesk-news",
+    name: "GlobalDesk News & Live TV Network",
+    tagline: "Global News Intelligence & Live Broadcast Monitor",
+    category: "Global Media & Developer Tools",
+    description:
+      "Real-time multi-region news intelligence aggregator and live global TV broadcast monitoring network.",
+    liveUrl: "https://globaldesk66-news.vercel.app",
+    repoUrl: "https://github.com/bhuvanjakkula/globaldesk-news",
+    techStack: ["TypeScript", "Media Intelligence", "Live Broadcast"],
+  },
+
+  // 3. FinTech, Quantitative Trading & Cross-Border Payments
   {
     id: "ai-finance-os",
     name: "AI Finance OS",
@@ -138,8 +244,10 @@ export const SOFTWARE_PROJECTS: SoftwareProject[] = [
     category: "FinTech & Risk Intelligence",
     description:
       "Companion software platform to Dr. Bhuvan Jakkula's book 'When the Screen Turns Against You', combining quantitative risk discipline with behavioral market telemetry.",
+    liveUrl: "https://scientific-stock-operator.vercel.app",
     repoUrl: "https://github.com/bhuvanjakkula/scientific-stock-operator",
     techStack: ["Python", "Algorithmic Risk", "Market Telemetry"],
+    badge: "Book Companion",
   },
   {
     id: "systemic-risk-platform",
@@ -175,12 +283,62 @@ export const SOFTWARE_PROJECTS: SoftwareProject[] = [
     techStack: ["JavaScript", "FX Remittance", "Global Corridors"],
   },
   {
+    id: "global-ownership-exchange",
+    name: "Global Ownership Exchange & Global Shares",
+    tagline: "Cross-Border Fractional Asset & Equity Exchange",
+    category: "FinTech & Risk Intelligence",
+    description:
+      "Digital asset marketplace and cross-border equity exchange enabling transparent fractional ownership and liquidity.",
+    liveUrl: "https://ubiquitous-funicular-sigma.vercel.app",
+    repoUrl: "https://github.com/bhuvanjakkula/ubiquitous-funicular",
+    techStack: ["Equity Exchange", "Fractional Assets", "Global Markets"],
+  },
+
+  // 4. Healthcare & Clinical AI
+  {
+    id: "cura-health-os",
+    name: "CuraHealth OS",
+    tagline: "Enterprise Healthcare Practice, Prior Auth & Clinical Intelligence",
+    category: "Healthcare & Clinical AI",
+    description:
+      "End-to-end clinical intelligence operating system streamlining prior authorizations, patient workflows, and healthcare practice management.",
+    liveUrl: "https://cura-health-os.vercel.app",
+    repoUrl: "https://github.com/bhuvanjakkula/cura-health-os",
+    techStack: ["TypeScript", "Clinical AI", "Prior Auth", "Healthcare OS"],
+    badge: "Live Platform",
+  },
+  {
+    id: "medrecover-ai",
+    name: "MedRecover AI",
+    tagline: "Intelligent Clinical Revenue Cycle & Insurance Denial Recovery",
+    category: "Healthcare & Clinical AI",
+    description:
+      "Automated healthcare revenue cycle management and AI-driven insurance claim denial analysis and recovery engine.",
+    liveUrl: "https://ai-insurance-denial-recovery.vercel.app",
+    repoUrl: "https://github.com/bhuvanjakkula/ai-insurance-denial-recovery",
+    techStack: ["Python", "Healthcare RCM", "Claim Recovery", "AI Appeals"],
+  },
+  {
+    id: "claimos",
+    name: "ClaimOS",
+    tagline: "Next-Gen Claims Processing & Adjudication Platform",
+    category: "Healthcare & Clinical AI",
+    description:
+      "High-velocity claims intelligence and automated adjudication workspace for modern insurers and enterprise healthcare providers.",
+    liveUrl: "https://claimos-eight.vercel.app",
+    repoUrl: "https://github.com/bhuvanjakkula/claimos",
+    techStack: ["Claims AI", "Adjudication", "Workflow Automation"],
+  },
+
+  // 5. Cybersecurity, Defense & Post-Quantum Cryptography
+  {
     id: "pqc-device-assurance",
     name: "PQC Device Assurance",
     tagline: "Post-Quantum Cryptography Lifecycle Verification for Embedded Firmware",
     category: "Cybersecurity & Post-Quantum",
     description:
       "Continuously verifies whether embedded devices can safely adopt quantum-safe cryptography over a 15-year lifecycle by inspecting firmware binaries directly in CI/CD pipelines.",
+    liveUrl: "https://pqc-device-assurance.vercel.app",
     repoUrl: "https://github.com/bhuvanjakkula/PQC-Device-Assurance",
     techStack: ["Post-Quantum Crypto", "Firmware Binary Analysis", "CI/CD Security"],
     badge: "Quantum-Safe",
@@ -197,6 +355,39 @@ export const SOFTWARE_PROJECTS: SoftwareProject[] = [
     techStack: ["Python", "Zero-Trust", "Cyber Defense"],
   },
   {
+    id: "aegis-q-tactical-mesh",
+    name: "Aegis-Q Tactical Mesh",
+    tagline: "Quantum-Resilient Tactical Communications & Defense Mesh",
+    category: "Cybersecurity & Post-Quantum",
+    description:
+      "Quantum-resistant tactical command network and real-time defense telemetry mesh for mission-critical operations.",
+    liveUrl: "https://aegis-q-tactical-mesh.vercel.app",
+    repoUrl: "https://github.com/bhuvanjakkula",
+    techStack: ["Tactical Mesh", "Quantum Security", "Defense AI"],
+  },
+  {
+    id: "drone-watch",
+    name: "Drone Watch",
+    tagline: "Autonomous Airspace Monitoring & UAV Defense Intelligence",
+    category: "Cybersecurity & Post-Quantum",
+    description:
+      "Real-time aerial perimeter surveillance, UAV flight-path telemetry analysis, and airspace threat detection platform.",
+    liveUrl: "https://drone-watch-blue.vercel.app",
+    repoUrl: "https://github.com/bhuvanjakkula",
+    techStack: ["UAV Telemetry", "Airspace Defense", "Sensor Fusion"],
+  },
+  {
+    id: "k9-intelligence-academy",
+    name: "K9 Intelligence Academy",
+    tagline: "Tactical Working-Dog Training & Operational Readiness System",
+    category: "Cybersecurity & Post-Quantum",
+    description:
+      "Specialized behavioral conditioning, handler certification, and tactical field readiness tracking platform for elite K9 units.",
+    liveUrl: "https://k9-intelligence-academy.vercel.app",
+    repoUrl: "https://github.com/bhuvanjakkula",
+    techStack: ["Tactical Operations", "Training Telemetry", "Field Readiness"],
+  },
+  {
     id: "praxis-os",
     name: "PRAXIS-OS 99",
     tagline: "Adaptive Decision Intelligence & Policy Simulation Platform",
@@ -206,36 +397,6 @@ export const SOFTWARE_PROJECTS: SoftwareProject[] = [
     liveUrl: "https://policy-starter-v010-swart.vercel.app",
     repoUrl: "https://github.com/bhuvanjakkula/PRAXIS-OS-99",
     techStack: ["Python", "Decision Intelligence", "Policy Simulation"],
-  },
-  {
-    id: "devflow12",
-    name: "DevFlow 12",
-    tagline: "Local-First High-Engineering Software Intelligence Platform",
-    category: "Global Media & Developer Tools",
-    description:
-      "Solves the 12 classic software engineering pain points plus 3 breakthrough innovations in code architecture, velocity, and reliability.",
-    repoUrl: "https://github.com/bhuvanjakkula/Devflow12",
-    techStack: ["Python", "Developer Intelligence", "Local-First"],
-  },
-  {
-    id: "globaldesk-news",
-    name: "GlobalDesk News",
-    tagline: "Global News Intelligence & Live TV News Network",
-    category: "Global Media & Developer Tools",
-    description:
-      "Real-time multi-region news intelligence aggregator and live global broadcast monitoring platform.",
-    repoUrl: "https://github.com/bhuvanjakkula/globaldesk-news",
-    techStack: ["TypeScript", "Media Intelligence", "Live Broadcast"],
-  },
-  {
-    id: "ggisp",
-    name: "GGISP — Global Governance Innovation Platform",
-    tagline: "Global Governance & Institutional Solutions Architecture",
-    category: "Global Media & Developer Tools",
-    description:
-      "Research-backed platform for international corporate law, institutional governance, and cross-border policy innovation.",
-    repoUrl: "https://github.com/bhuvanjakkula/GGISP-Global-Governance-Innovation-Solutions-Platform",
-    techStack: ["Python", "Global Governance", "LegalTech"],
   },
 ];
 

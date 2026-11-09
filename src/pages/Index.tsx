@@ -134,7 +134,7 @@ const Index = () => {
               <Button asChild size="lg" className="glow-neon">
                 <Link to="/software">
                   <Cpu size={18} className="mr-2" />
-                  19+ AI Software Projects
+                  31+ AI Software Projects
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-amber-400/60 bg-amber-500/15 text-amber-200 hover:bg-amber-500/25 hover:text-amber-100">
@@ -190,7 +190,7 @@ const Index = () => {
                     <Cpu size={28} />
                   </div>
                   <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-500/20 text-amber-300 border border-amber-400/40">
-                    Pillar 01 • 19+ Platforms
+                    Pillar 01 • 31+ Platforms
                   </span>
                 </div>
 
@@ -230,7 +230,7 @@ const Index = () => {
               <div className="space-y-3 pt-4 border-t border-amber-400/25">
                 <Button asChild className="w-full glow-neon gap-2">
                   <Link to="/software">
-                    <Cpu size={16} /> Open Full Software Hub (19+ Apps) <ArrowRight size={15} />
+                    <Cpu size={16} /> Open Full Software Hub (31+ Apps) <ArrowRight size={15} />
                   </Link>
                 </Button>
                 <Button asChild variant="outline" className="w-full border-amber-400/40 text-amber-200 hover:bg-amber-500/20 gap-2">
