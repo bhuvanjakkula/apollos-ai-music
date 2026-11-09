@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Play, ExternalLink, Search, Music } from "lucide-react";
+import { Play, ExternalLink, Search, Music, Share2, Heart, Film } from "lucide-react";
 import Layout from "@/components/layout/Layout";
-import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { usePlayer } from "@/contexts/PlayerContext";
+import { useAuth } from "@/contexts/AuthContext";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 import album1 from "@/assets/album-1.jpg";
 import album2 from "@/assets/album-2.jpg";
 import album3 from "@/assets/album-3.jpg";
@@ -11,7 +16,7 @@ import album4 from "@/assets/album-4.jpg";
 const SPOTIFY_ARTIST_BHUVANAAI = "https://open.spotify.com/artist/6FAynluV2cSNgytAi6TZhW";
 const SPOTIFY_ARTIST_APOLLOS_AI = "https://open.spotify.com/artist/5RjIU1skmvuGIRpDE6h8Vb";
 
-interface Track {
+export interface Track {
   id: number;
   title: string;
   label: string;
@@ -23,7 +28,7 @@ interface Track {
   year: string;
 }
 
-const allTracks: Track[] = [
+export const allTracks: Track[] = [
   // Bhuvanaai Music tracks
   { id: 1, title: "Forever in Your Love", label: "Bhuvanaai Music", genre: "Cinematic Pop", image: album3, spotifyUrl: "https://open.spotify.com/track/6W4HPydyZmd5Hzmo4XNcGy", spotifyEmbedId: "6W4HPydyZmd5Hzmo4XNcGy", duration: "3:46", year: "2025" },
   { id: 2, title: "Oh My Divine", label: "Bhuvanaai Music", genre: "Emotional", image: album4, spotifyUrl: "https://open.spotify.com/track/4mSyvWzuVSgEbM9eAuYVrK", spotifyEmbedId: "4mSyvWzuVSgEbM9eAuYVrK", duration: "3:59", year: "2025" },
@@ -41,27 +46,108 @@ const allTracks: Track[] = [
 
   // Apollo's AI Music tracks
   { id: 14, title: "Kiss Me Tonight", label: "Apollo's AI Music", genre: "Cinematic Pop", image: album1, spotifyUrl: "https://open.spotify.com/track/5wbQJIgoYp6WRM1xVqJzsh", spotifyEmbedId: "5wbQJIgoYp6WRM1xVqJzsh", duration: "3:59", year: "2025" },
-  { id: 15, title: "Digital Horizons", label: "Apollo's AI Music", genre: "AI Fusion", image: album2, spotifyUrl: "https://open.spotify.com/artist/5RjIU1skmvuGIRpDE6h8Vb", spotifyEmbedId: "", duration: "3:45", year: "2025" },
-  { id: 16, title: "Stellar Frequencies", label: "Apollo's AI Music", genre: "Film Score", image: album1, spotifyUrl: "https://open.spotify.com/artist/5RjIU1skmvuGIRpDE6h8Vb", spotifyEmbedId: "", duration: "4:12", year: "2025" },
-  { id: 17, title: "Midnight Algorithm", label: "Apollo's AI Music", genre: "Orchestral", image: album2, spotifyUrl: "https://open.spotify.com/artist/5RjIU1skmvuGIRpDE6h8Vb", spotifyEmbedId: "", duration: "3:33", year: "2025" },
-  { id: 18, title: "Orchestral Cosmos", label: "Apollo's AI Music", genre: "Orchestral", image: album1, spotifyUrl: "https://open.spotify.com/artist/5RjIU1skmvuGIRpDE6h8Vb", spotifyEmbedId: "", duration: "4:20", year: "2025" },
-  { id: 19, title: "Celestial Waves", label: "Apollo's AI Music", genre: "Cinematic Pop", image: album2, spotifyUrl: "https://open.spotify.com/artist/5RjIU1skmvuGIRpDE6h8Vb", spotifyEmbedId: "", duration: "3:50", year: "2025" },
-  { id: 20, title: "Neural Pathways", label: "Apollo's AI Music", genre: "AI Fusion", image: album1, spotifyUrl: "https://open.spotify.com/artist/5RjIU1skmvuGIRpDE6h8Vb", spotifyEmbedId: "", duration: "3:28", year: "2025" },
+  { id: 15, title: "Digital Horizons", label: "Apollo's AI Music", genre: "AI Fusion", image: album2, spotifyUrl: "https://open.spotify.com/artist/5RjIU1skmvuGIRpDE6h8Vb", spotifyEmbedId: "5wbQJIgoYp6WRM1xVqJzsh", duration: "3:45", year: "2025" },
+  { id: 16, title: "Stellar Frequencies", label: "Apollo's AI Music", genre: "Film Score", image: album1, spotifyUrl: "https://open.spotify.com/artist/5RjIU1skmvuGIRpDE6h8Vb", spotifyEmbedId: "5wbQJIgoYp6WRM1xVqJzsh", duration: "4:12", year: "2025" },
+  { id: 17, title: "Midnight Algorithm", label: "Apollo's AI Music", genre: "Orchestral", image: album2, spotifyUrl: "https://open.spotify.com/artist/5RjIU1skmvuGIRpDE6h8Vb", spotifyEmbedId: "5wbQJIgoYp6WRM1xVqJzsh", duration: "3:33", year: "2025" },
+  { id: 18, title: "Orchestral Cosmos", label: "Apollo's AI Music", genre: "Orchestral", image: album1, spotifyUrl: "https://open.spotify.com/artist/5RjIU1skmvuGIRpDE6h8Vb", spotifyEmbedId: "5wbQJIgoYp6WRM1xVqJzsh", duration: "4:20", year: "2025" },
+  { id: 19, title: "Celestial Waves", label: "Apollo's AI Music", genre: "Cinematic Pop", image: album2, spotifyUrl: "https://open.spotify.com/artist/5RjIU1skmvuGIRpDE6h8Vb", spotifyEmbedId: "5wbQJIgoYp6WRM1xVqJzsh", duration: "3:50", year: "2025" },
+  { id: 20, title: "Neural Pathways", label: "Apollo's AI Music", genre: "AI Fusion", image: album1, spotifyUrl: "https://open.spotify.com/artist/5RjIU1skmvuGIRpDE6h8Vb", spotifyEmbedId: "5wbQJIgoYp6WRM1xVqJzsh", duration: "3:28", year: "2025" },
 ];
 
 const filters = ["All", "Apollo's AI Music", "Bhuvanaai Music"];
 const genres = ["All Genres", "Cinematic Pop", "Orchestral", "Film Score", "AI Fusion", "Emotional"];
 
 const MusicCatalog = () => {
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const { t } = useLanguage();
+  const { playTrack } = usePlayer();
+  const { user } = useAuth();
+
   const [activeFilter, setActiveFilter] = useState("All");
   const [activeGenre, setActiveGenre] = useState("All Genres");
-  const [search, setSearch] = useState("");
-  const [activeEmbed, setActiveEmbed] = useState<string | null>(null);
+  const [search, setSearch] = useState(searchParams.get("track") || "");
+  const [savedTitles, setSavedTitles] = useState<string[]>([]);
+
+  useEffect(() => {
+    const qTrack = searchParams.get("track");
+    if (qTrack) {
+      setSearch(qTrack);
+      const found = allTracks.find(
+        (tr) => tr.title.toLowerCase() === qTrack.toLowerCase()
+      );
+      if (found) {
+        playTrack(found);
+      }
+    }
+  }, [searchParams]);
+
+  useEffect(() => {
+    if (user) {
+      supabase
+        .from("saved_tracks")
+        .select("track_title")
+        .eq("user_id", user.id)
+        .then(({ data }) => {
+          if (data) setSavedTitles(data.map((d) => d.track_title));
+        });
+    }
+  }, [user]);
+
+  const handleSaveTrack = async (track: Track) => {
+    if (!user) {
+      toast.info("Sign in to save tracks to your personal library!");
+      navigate("/login");
+      return;
+    }
+
+    if (savedTitles.includes(track.title)) {
+      toast.info(`"${track.title}" is already in your Saved Tracks.`);
+      return;
+    }
+
+    const { error } = await supabase.from("saved_tracks").insert({
+      user_id: user.id,
+      track_title: track.title,
+      artist_name: track.label,
+      album_name: track.genre,
+    });
+
+    if (error) {
+      toast.error("Could not save track. Please try again.");
+    } else {
+      setSavedTitles((prev) => [...prev, track.title]);
+      toast.success(`Saved "${track.title}" to your Dashboard!`);
+    }
+  };
+
+  const handleShareTrack = async (track: Track) => {
+    const shareUrl = `${window.location.origin}/music?track=${encodeURIComponent(track.title)}`;
+    const shareText = `Listen to "${track.title}" (${track.genre}) by ${track.label} — Apollo's AI Music!`;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: `${track.title} | Apollo's AI Music`,
+          text: shareText,
+          url: shareUrl,
+        });
+        return;
+      } catch {
+        // Fallback to clipboard
+      }
+    }
+    await navigator.clipboard.writeText(`${shareText} ${shareUrl}`);
+    toast.success(`Copied direct link to "${track.title}"!`);
+  };
 
   const filtered = allTracks.filter((track) => {
     const matchLabel = activeFilter === "All" || track.label === activeFilter;
     const matchGenre = activeGenre === "All Genres" || track.genre === activeGenre;
-    const matchSearch = track.title.toLowerCase().includes(search.toLowerCase());
+    const matchSearch =
+      track.title.toLowerCase().includes(search.toLowerCase()) ||
+      track.genre.toLowerCase().includes(search.toLowerCase()) ||
+      track.label.toLowerCase().includes(search.toLowerCase());
     return matchLabel && matchGenre && matchSearch;
   });
 
@@ -70,12 +156,16 @@ const MusicCatalog = () => {
       <section className="py-24">
         <div className="container mx-auto px-6">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <p className="text-sm tracking-[0.3em] uppercase text-primary mb-3">Catalog</p>
-            <h1 className="text-4xl md:text-6xl font-display font-bold mb-4">Music Collection</h1>
-            <p className="text-muted-foreground mb-4">
-              190+ original songs across two labels
+            <p className="text-sm tracking-[0.3em] uppercase text-primary mb-3">
+              {t("catalog.badge", "Global Sync & Streaming Catalog")}
             </p>
-            <div className="flex gap-4 mb-12">
+            <h1 className="text-4xl md:text-6xl font-display font-bold mb-4">
+              {t("catalog.title", "Music Collection")}
+            </h1>
+            <p className="text-muted-foreground mb-6">
+              {t("catalog.subtitle", "190+ original songs across two labels")}
+            </p>
+            <div className="flex flex-wrap gap-4 mb-12">
               <a
                 href={SPOTIFY_ARTIST_APOLLOS_AI}
                 target="_blank"
@@ -94,37 +184,6 @@ const MusicCatalog = () => {
               </a>
             </div>
           </motion.div>
-
-          {/* Spotify Embed Player */}
-          {activeEmbed && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="mb-8"
-            >
-              <div className="card-cinematic p-4 max-w-2xl">
-                <div className="flex justify-between items-center mb-3">
-                  <p className="text-sm text-muted-foreground font-display">Now Playing</p>
-                  <button
-                    onClick={() => setActiveEmbed(null)}
-                    className="text-xs text-muted-foreground hover:text-foreground"
-                  >
-                    Close
-                  </button>
-                </div>
-                <iframe
-                  src={`https://open.spotify.com/embed/track/${activeEmbed}?utm_source=generator&theme=0`}
-                  width="100%"
-                  height="152"
-                  frameBorder="0"
-                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                  loading="lazy"
-                  className="rounded-lg"
-                />
-              </div>
-            </motion.div>
-          )}
 
           {/* Filters */}
           <div className="flex flex-wrap gap-4 mb-6">
@@ -164,7 +223,7 @@ const MusicCatalog = () => {
             <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
             <input
               type="text"
-              placeholder="Search tracks..."
+              placeholder={t("catalog.search", "Search tracks...")}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="w-full pl-12 pr-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
@@ -173,55 +232,84 @@ const MusicCatalog = () => {
 
           {/* Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {filtered.map((track, i) => (
-              <motion.div
-                key={track.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                className="group"
-              >
-                <div className="relative aspect-square rounded-lg overflow-hidden mb-3">
-                  <img
-                    src={track.image}
-                    alt={track.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-background/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
-                    {track.spotifyEmbedId ? (
-                      <button
-                        onClick={() => setActiveEmbed(track.spotifyEmbedId)}
-                        className="w-10 h-10 rounded-full bg-primary flex items-center justify-center glow-neon"
-                      >
-                        <Play size={18} className="text-primary-foreground" />
-                      </button>
-                    ) : (
-                      <a
-                        href={track.spotifyUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-10 h-10 rounded-full bg-primary flex items-center justify-center glow-neon"
-                      >
-                        <Play size={18} className="text-primary-foreground" />
-                      </a>
-                    )}
-                    <a
-                      href={track.spotifyUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-10 h-10 rounded-full border border-foreground/30 flex items-center justify-center hover:border-primary transition-colors"
-                    >
-                      <ExternalLink size={16} className="text-foreground" />
-                    </a>
+            {filtered.map((track, i) => {
+              const isSaved = savedTitles.includes(track.title);
+              return (
+                <motion.div
+                  key={track.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.04 }}
+                  className="group card-cinematic p-3 flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="relative aspect-square rounded-lg overflow-hidden mb-3">
+                      <img
+                        src={track.image}
+                        alt={track.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-background/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                        <button
+                          onClick={() => playTrack(track)}
+                          title={t("catalog.play", "Play Preview")}
+                          className="w-10 h-10 rounded-full bg-primary flex items-center justify-center glow-neon hover:scale-105 transition-transform"
+                        >
+                          <Play size={18} className="text-primary-foreground" />
+                        </button>
+                        <button
+                          onClick={() => handleSaveTrack(track)}
+                          title={t("catalog.save", "Save Track")}
+                          className={`w-9 h-9 rounded-full border flex items-center justify-center transition-colors ${
+                            isSaved
+                              ? "border-primary bg-primary/20 text-primary"
+                              : "border-foreground/30 text-foreground hover:border-primary"
+                          }`}
+                        >
+                          <Heart size={15} fill={isSaved ? "currentColor" : "none"} />
+                        </button>
+                        <button
+                          onClick={() => handleShareTrack(track)}
+                          title={t("catalog.share", "Share Track")}
+                          className="w-9 h-9 rounded-full border border-foreground/30 flex items-center justify-center hover:border-primary transition-colors text-foreground"
+                        >
+                          <Share2 size={15} />
+                        </button>
+                        <a
+                          href={track.spotifyUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title="Open on Spotify"
+                          className="w-9 h-9 rounded-full border border-foreground/30 flex items-center justify-center hover:border-primary transition-colors text-foreground"
+                        >
+                          <ExternalLink size={15} />
+                        </a>
+                      </div>
+                    </div>
+                    <h3 className="font-display font-semibold text-sm text-foreground truncate">
+                      {track.title}
+                    </h3>
+                    <p className="text-xs text-muted-foreground">
+                      {track.label} • {track.duration}
+                    </p>
                   </div>
-                </div>
-                <h3 className="font-display font-semibold text-sm text-foreground">{track.title}</h3>
-                <p className="text-xs text-muted-foreground">{track.label} • {track.duration}</p>
-                <span className="text-[10px] text-primary">{track.genre}</span>
-              </motion.div>
-            ))}
+
+                  <div className="mt-3 pt-2 border-t border-border/50 flex items-center justify-between">
+                    <span className="text-[10px] text-primary font-medium">{track.genre}</span>
+                    <button
+                      onClick={() =>
+                        navigate(`/film-licensing?track=${encodeURIComponent(track.title)}`)
+                      }
+                      className="text-[11px] text-muted-foreground hover:text-primary flex items-center gap-1 transition-colors"
+                    >
+                      <Film size={12} /> {t("catalog.license", "License")}
+                    </button>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
 
           {/* Full Artist Embeds */}

@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://apollos-ai-music.vercel.app/sitemap.xml
