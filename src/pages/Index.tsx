@@ -132,25 +132,252 @@ const Index = () => {
               className="flex flex-wrap justify-center gap-4"
             >
               <Button asChild size="lg" className="glow-neon">
+                <Link to="/software">
+                  <Cpu size={18} className="mr-2" />
+                  19+ AI Software Projects
+                </Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="border-amber-400/60 bg-amber-500/15 text-amber-200 hover:bg-amber-500/25 hover:text-amber-100">
                 <Link to="/music">
-                  <Play size={18} className="mr-2" />
+                  <Play size={18} className="mr-2 text-amber-400" />
                   {t("hero.cta.explore", "Explore 190+ Tracks")}
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-amber-400/50 bg-amber-500/10 text-amber-200 hover:bg-amber-500/20 hover:text-amber-100">
-                <Link to="/innovations">
-                  <Cpu size={18} className="mr-2 text-amber-400" />
-                  19+ AI Software &amp; Books
-                </Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="border-pink-400/40 bg-pink-500/10 text-pink-200 hover:bg-pink-500/20">
-                <Link to="/film-licensing">
-                  <Film size={18} className="mr-2 text-pink-400" />
-                  {t("hero.cta.license", "License for Film & Media")}
+              <Button asChild variant="outline" size="lg" className="border-cyan-400/50 bg-cyan-500/15 text-cyan-200 hover:bg-cyan-500/25">
+                <Link to="/books">
+                  <BookOpen size={18} className="mr-2 text-cyan-400" />
+                  10+ Published Books
                 </Link>
               </Button>
             </motion.div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* THREE DISTINCT SEGMENTS: 1. SOFTWARE, 2. MUSIC, 3. BOOKS */}
+      <section className="py-24 relative overflow-hidden border-b border-border">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center max-w-3xl mx-auto mb-16"
+          >
+            <p className="text-sm tracking-[0.35em] uppercase text-amber-400 font-semibold mb-3">
+              Dr. Bhuvan Jakkula — Three Global Pillars
+            </p>
+            <h2 className="text-3xl md:text-5xl font-display font-extrabold mb-4">
+              <span className="text-gradient-gold">Software</span> •{" "}
+              <span className="text-gradient-neon">Music</span> •{" "}
+              <span className="text-cyan-400">Books</span>
+            </h2>
+            <p className="text-muted-foreground text-base md:text-lg">
+              Explore three distinct worlds of innovation — Enterprise AI Software Platforms, 190+ Original Cinematic Songs, and International Published Books — each with dedicated portals and live links.
+            </p>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-3 gap-8">
+            {/* SEGMENT 1: ENTERPRISE AI SOFTWARE PROJECTS */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="card-cinematic p-8 flex flex-col justify-between border-amber-400/50 bg-gradient-to-br from-amber-500/15 via-background/90 to-pink-500/10"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-6">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-background shadow-[0_0_25px_rgba(245,158,11,0.5)]">
+                    <Cpu size={28} />
+                  </div>
+                  <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-500/20 text-amber-300 border border-amber-400/40">
+                    Pillar 01 • 19+ Platforms
+                  </span>
+                </div>
+
+                <h3 className="text-2xl md:text-3xl font-display font-extrabold text-gradient-gold mb-3">
+                  1. AI Software Projects
+                </h3>
+                <p className="text-sm text-amber-100/80 leading-relaxed mb-6">
+                  Production-grade Enterprise AI operating systems built by Dr. Bhuvan Jakkula — spanning Autonomous Revenue AI (<strong>RevNexus</strong>), Post-Quantum Security (<strong>C2C Rescue</strong>, <strong>PQC Assurance</strong>, <strong>NullMesh</strong>), Healthcare AI (<strong>CuraHealth OS</strong>, <strong>MedRecover AI</strong>, <strong>ClaimOS</strong>), and Institutional FinTech (<strong>AI Finance OS</strong>, <strong>AtlasPay</strong>, <strong>LedgerTrace</strong>, <strong>RiskPulse</strong>).
+                </p>
+
+                {/* Quick Direct Software Links */}
+                <div className="space-y-2 mb-8">
+                  <p className="text-xs uppercase tracking-wider text-amber-300 font-semibold mb-2">
+                    Direct Live Software Links:
+                  </p>
+                  {[
+                    { name: "RevNexus AI (Revenue Engine)", url: "https://rev-nexus-pi.vercel.app" },
+                    { name: "CuraHealth OS (Clinical AI)", url: "https://cura-health-os.vercel.app" },
+                    { name: "AI Finance OS (FinTech)", url: "https://ai-finance-os-drab.vercel.app" },
+                    { name: "AtlasPay (Global Payments)", url: "https://atlas-pay-flax.vercel.app" },
+                    { name: "NullMesh Defense (Cyber AI)", url: "https://nullmesh-defense99.vercel.app" },
+                  ].map((item) => (
+                    <a
+                      key={item.name}
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-between px-3 py-2 rounded-lg bg-secondary/70 hover:bg-amber-500/20 border border-amber-400/25 text-xs text-foreground hover:text-amber-300 transition-all"
+                    >
+                      <span className="font-medium">{item.name}</span>
+                      <ExternalLink size={13} className="text-amber-400 shrink-0" />
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-3 pt-4 border-t border-amber-400/25">
+                <Button asChild className="w-full glow-neon gap-2">
+                  <Link to="/software">
+                    <Cpu size={16} /> Open Full Software Hub (19+ Apps) <ArrowRight size={15} />
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" className="w-full border-amber-400/40 text-amber-200 hover:bg-amber-500/20 gap-2">
+                  <a href={AUTHOR_LINKS.github} target="_blank" rel="noopener noreferrer">
+                    <Github size={16} /> GitHub (@bhuvanjakkula) <ExternalLink size={14} />
+                  </a>
+                </Button>
+              </div>
+            </motion.div>
+
+            {/* SEGMENT 2: APOLLO'S AI MUSIC & BHUVANAAI */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="card-cinematic p-8 flex flex-col justify-between border-pink-400/50 bg-gradient-to-br from-pink-500/15 via-background/90 to-purple-500/10"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-6">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center text-white shadow-[0_0_25px_rgba(236,72,153,0.5)]">
+                    <Music size={28} />
+                  </div>
+                  <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-pink-500/20 text-pink-300 border border-pink-400/40">
+                    Pillar 02 • 190+ Songs
+                  </span>
+                </div>
+
+                <h3 className="text-2xl md:text-3xl font-display font-extrabold text-gradient-neon mb-3">
+                  2. AI Music &amp; Film Studio
+                </h3>
+                <p className="text-sm text-pink-100/80 leading-relaxed mb-6">
+                  Next-generation global music production studio releasing <strong>190+ original songs</strong> across two international labels — <strong>Apollo's AI Music (140 songs)</strong> and <strong>Bhuvanaai Music (50 songs)</strong>. Crafted for feature films, trailers, OTT series, and global streaming across 180+ countries.
+                </p>
+
+                {/* Quick Direct Music Links */}
+                <div className="space-y-2 mb-8">
+                  <p className="text-xs uppercase tracking-wider text-pink-300 font-semibold mb-2">
+                    Direct Streaming &amp; Licensing Links:
+                  </p>
+                  {[
+                    { name: "Spotify — Apollo's AI Music (140 Songs)", url: AUTHOR_LINKS.spotifyApollos },
+                    { name: "Spotify — Bhuvanaai Artist Profile (50 Songs)", url: AUTHOR_LINKS.spotifyBhuvanaai },
+                    { name: "Kiss Me Tonight — Featured Single", url: "https://open.spotify.com/track/5wbQJIgoYp6WRM1xVqJzsh" },
+                    { name: "Forever in Your Love — Cinematic Pop", url: "https://open.spotify.com/track/6W4HPydyZmd5Hzmo4XNcGy" },
+                    { name: "Oh My Divine — Emotional Score", url: "https://open.spotify.com/track/4mSyvWzuVSgEbM9eAuYVrK" },
+                  ].map((item) => (
+                    <a
+                      key={item.name}
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-between px-3 py-2 rounded-lg bg-secondary/70 hover:bg-pink-500/20 border border-pink-400/25 text-xs text-foreground hover:text-pink-300 transition-all"
+                    >
+                      <span className="font-medium">{item.name}</span>
+                      <ExternalLink size={13} className="text-pink-400 shrink-0" />
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-3 pt-4 border-t border-pink-400/25">
+                <Button asChild className="w-full bg-gradient-to-r from-pink-500 via-rose-500 to-amber-500 text-white font-bold hover:opacity-95 gap-2">
+                  <Link to="/music">
+                    <Play size={16} /> Open Full Music Catalog (190+ Songs) <ArrowRight size={15} />
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" className="w-full border-pink-400/40 text-pink-200 hover:bg-pink-500/20 gap-2">
+                  <Link to="/film-licensing">
+                    <Film size={16} /> Film &amp; Media Sync Licensing <ArrowRight size={14} />
+                  </Link>
+                </Button>
+              </div>
+            </motion.div>
+
+            {/* SEGMENT 3: PUBLISHED BOOKS & LITERATURE */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="card-cinematic p-8 flex flex-col justify-between border-cyan-400/50 bg-gradient-to-br from-cyan-500/15 via-background/90 to-emerald-500/10"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-6">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-400 to-teal-600 flex items-center justify-center text-background shadow-[0_0_25px_rgba(34,211,238,0.5)]">
+                    <BookOpen size={28} />
+                  </div>
+                  <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-cyan-500/20 text-cyan-300 border border-cyan-400/40">
+                    Pillar 03 • 10+ Books
+                  </span>
+                </div>
+
+                <h3 className="text-2xl md:text-3xl font-display font-extrabold text-cyan-300 mb-3">
+                  3. Published Books
+                </h3>
+                <p className="text-sm text-cyan-100/80 leading-relaxed mb-6">
+                  Multidisciplinary books by <strong>Dr. Bhuvan Jakkula</strong> published globally on Amazon — bridging AI &amp; Global Defense (<em>AGI and Global Security</em>), Quantitative Finance (<em>When the Screen Turns Against You</em>), Music Romance (<em>Where Our Hearts Become Music</em>), and Espionage Thrillers (<em>The Meridian Protocol</em>).
+                </p>
+
+                {/* Quick Direct Book Links */}
+                <div className="space-y-2 mb-8">
+                  <p className="text-xs uppercase tracking-wider text-cyan-300 font-semibold mb-2">
+                    Featured Books &amp; Author Links:
+                  </p>
+                  {[
+                    { name: "Where Our Hearts Become Music (AI & Music Novel)", url: AUTHOR_LINKS.amazon },
+                    { name: "AGI and Global Security (AI & Defense)", url: AUTHOR_LINKS.amazon },
+                    { name: "Architecture Choice in Intelligence Analysis", url: AUTHOR_LINKS.amazon },
+                    { name: "When the Screen Turns Against You (Finance)", url: AUTHOR_LINKS.amazon },
+                    { name: "The Meridian Protocol (Espionage Thriller)", url: AUTHOR_LINKS.amazon },
+                  ].map((item) => (
+                    <a
+                      key={item.name}
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-between px-3 py-2 rounded-lg bg-secondary/70 hover:bg-cyan-500/20 border border-cyan-400/25 text-xs text-foreground hover:text-cyan-300 transition-all"
+                    >
+                      <span className="font-medium">{item.name}</span>
+                      <ExternalLink size={13} className="text-cyan-400 shrink-0" />
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-3 pt-4 border-t border-cyan-400/25">
+                <Button asChild className="w-full bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400 text-background font-bold hover:opacity-95 gap-2">
+                  <Link to="/books">
+                    <BookOpen size={16} /> Open Full Books Library (10+ Titles) <ArrowRight size={15} />
+                  </Link>
+                </Button>
+                <div className="grid grid-cols-2 gap-2">
+                  <Button asChild variant="outline" size="sm" className="border-cyan-400/40 text-cyan-200 hover:bg-cyan-500/20 gap-1.5 text-xs">
+                    <a href={AUTHOR_LINKS.amazon} target="_blank" rel="noopener noreferrer">
+                      Amazon Store <ExternalLink size={12} />
+                    </a>
+                  </Button>
+                  <Button asChild variant="outline" size="sm" className="border-cyan-400/40 text-cyan-200 hover:bg-cyan-500/20 gap-1.5 text-xs">
+                    <a href={AUTHOR_LINKS.blog} target="_blank" rel="noopener noreferrer">
+                      Author Blog <ExternalLink size={12} />
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 

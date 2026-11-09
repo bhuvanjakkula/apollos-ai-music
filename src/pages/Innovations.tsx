@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   Cpu,
@@ -55,10 +56,23 @@ const getCategoryIcon = (category: SoftwareProject["category"]) => {
 };
 
 const Innovations = () => {
-  const [activeTab, setActiveTab] = useState<"software" | "books">("software");
+  const location = useLocation();
+  const initialTab =
+    location.pathname === "/books" || location.search.includes("tab=books")
+      ? "books"
+      : "software";
+  const [activeTab, setActiveTab] = useState<"software" | "books">(initialTab);
   const [softwareCategory, setSoftwareCategory] = useState<string>("All Platforms");
   const [bookGenre, setBookGenre] = useState<string>("All Books");
   const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(() => {
+    if (location.pathname === "/books" || location.search.includes("tab=books")) {
+      setActiveTab("books");
+    } else if (location.pathname === "/software" || location.search.includes("tab=software")) {
+      setActiveTab("software");
+    }
+  }, [location.pathname, location.search]);
 
   const filteredSoftware = SOFTWARE_PROJECTS.filter((project) => {
     const matchCategory =

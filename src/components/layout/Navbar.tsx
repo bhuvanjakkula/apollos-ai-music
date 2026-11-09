@@ -21,12 +21,12 @@ const Navbar = () => {
 
   const navLinks = [
     { to: "/", label: t("nav.home", "Home") },
-    { to: "/music", label: t("nav.music", "Music Catalog") },
-    { to: "/innovations", label: t("nav.innovations", "Software & Books") },
+    { to: "/software", label: t("nav.software", "AI Software") },
+    { to: "/music", label: t("nav.music", "Music") },
+    { to: "/books", label: t("nav.books", "Books") },
     { to: "/artist", label: t("nav.artist", "Artist") },
     { to: "/film-licensing", label: t("nav.licensing", "Film & Media") },
     { to: "/partnerships", label: t("nav.partnerships", "Partnerships") },
-    { to: "/about", label: t("nav.about", "About") },
     { to: "/contact", label: t("nav.contact", "Contact") },
   ];
 

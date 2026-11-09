@@ -12,6 +12,8 @@ const PAGE_TITLES: Record<string, string> = {
   "/film-licensing": "Global Film, TV & Game Music Sync Licensing | Apollo's AI Music",
   "/partnerships": "Global Industry & Studio Partnerships | Apollo's AI Music",
   "/innovations": "Enterprise AI Software Projects & Published Books | Dr. Bhuvan Jakkula",
+  "/software": "19+ Enterprise AI Software Platforms | Dr. Bhuvan Jakkula",
+  "/books": "10+ Published Books on Amazon | Dr. Bhuvan Jakkula",
   "/contact": "Contact Apollo's AI Music | Worldwide Sync & Production Inquiries",
   "/dashboard": "Creator & Listener Dashboard | Apollo's AI Music",
 };
